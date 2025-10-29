@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import api from 'https://attendance-deployment.onrender.com/api';
+import api from '../utils/api';
 import jwtDecode from 'jwt-decode';
 import _ from 'lodash';
 import ChangePasswordForm from '../components/ChangePasswordForm';

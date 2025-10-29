@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth'; // Import the auth hook to check user role
-import api from 'https://attendance-deployment.onrender.com/api';
+import api from '../utils/api';
 import CreateClassForm from '../components/CreateClassForm';
 import CreateTeacherForm from '../components/CreateTeacherForm'; // The form for admins
 

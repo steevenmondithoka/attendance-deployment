@@ -5,7 +5,8 @@ import { FaUsers, FaChalkboardTeacher, FaUserGraduate, FaSchool } from 'react-ic
 import CreateTeacherForm from './CreateTeacherForm';
 
 // Establish a connection to the Socket.IO server
-const socket = io('http://localhost:5000');
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'TEMP_BACKEND_URL_PLACEHOLDER'; 
+const socket = io(BACKEND_URL);
 
 // --- Reusable Stat Card Component (No change) ---
 const StatCard = ({ Icon, title, value, color }) => (

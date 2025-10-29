@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import api from 'https://attendance-deployment.onrender.com/api'; // Assuming 'api' is an Axios instance configured with a base URL
+import api from '../utils/api'; // Assuming 'api' is an Axios instance configured with a base URL
 
 const BulkAddStudents = ({ classId, onUploadComplete }) => {
     const [file, setFile] = useState(null);

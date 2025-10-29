@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import api from 'https://attendance-deployment.onrender.com/api';
+import api from '../utils/api';
 
 const ChangePasswordForm = () => {
     const [formData, setFormData] = useState({

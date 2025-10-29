@@ -1,7 +1,7 @@
 // src/components/AddSingleStudent.js
 
 import React, { useState } from 'react';
-import api from 'https://attendance-deployment.onrender.com/api'; // Make sure you have the configured Axios instance
+import api from '../utils/api'; // Make sure you have the configured Axios instance
 
 const AddSingleStudent = ({ classId, onStudentAdded }) => {
     const [formData, setFormData] = useState({

@@ -1,6 +1,6 @@
 // src/components/CreateTeacherForm.jsx
 import React, { useState } from 'react';
-import api from 'https://attendance-deployment.onrender.com/api';
+import api from '../utils/api';
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
