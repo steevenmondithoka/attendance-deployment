@@ -2,7 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-
+// exports.createTeacher - CRASH PREVENTION IMPLEMENTED
 exports.createTeacher = async (req, res) => {
     const { name, email, password } = req.body;
 
@@ -24,9 +24,14 @@ exports.createTeacher = async (req, res) => {
 
         await user.save();
 
-        // --- REAL-TIME UPDATE TRIGGER ---
-        // After saving the new teacher, emit an update to all connected dashboard clients.
-        await req.emitDashboardData();
+        // --- REAL-TIME UPDATE CRASH PREVENTION ---
+        try {
+            await req.emitDashboardData();
+        } catch(dashboardErr) {
+            // Log the error but DO NOT let it stop the main process
+            console.error("Non-fatal: Failed to emit dashboard data after teacher creation:", dashboardErr.message);
+        }
+        // --- END CRASH PREVENTION ---
 
         res.status(201).json({ success: true, msg: 'Teacher account created successfully.' });
 
@@ -39,6 +44,7 @@ exports.createTeacher = async (req, res) => {
 // @desc    Register user
 // @route   POST /api/auth/register
 // @access  Public
+// exports.register - CRASH PREVENTION IMPLEMENTED
 exports.register = async (req, res) => {
     const { name, email, password, role } = req.body;
     try {
@@ -46,19 +52,25 @@ exports.register = async (req, res) => {
         if (user) {
             return res.status(400).json({ msg: 'User already exists' });
         }
+        
         user = new User({ name, email, password, role });
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(password, salt);
         await user.save();
 
-        // --- REAL-TIME UPDATE TRIGGER ---
-        // After any new user is saved, emit an update.
-        // This makes the function robust for future roles.
+        // --- REAL-TIME UPDATE CRASH PREVENTION ---
         try {
-    await req.emitDashboardData(); 
-} catch(dashboardErr) {
-    console.error("Non-fatal: Failed to emit dashboard data after registration:", dashboardErr);
-}
+            await req.emitDashboardData();
+        } catch(dashboardErr) {
+            // Log the error but DO NOT let it stop the main process
+            console.error("Non-fatal: Failed to emit dashboard data after registration:", dashboardErr.message);
+        }
+        // --- END CRASH PREVENTION ---
+
+        const payload = { id: user.id, role: user.role, name: user.name };
+        // The process.env.JWT_SECRET must be set on Render for this line to work!
+        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }); 
+        res.status(201).json({ token });
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
