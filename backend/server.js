@@ -70,7 +70,7 @@ io.on('connection', (socket) => {
   console.log(`User connected with socket ID: ${socket.id}`);
   
   // Immediately send the latest data to a newly connected user
-  emitDashboardData();
+  // emitDashboardData();
 
   socket.on('disconnect', () => {
     console.log(`User disconnected: ${socket.id}`);
