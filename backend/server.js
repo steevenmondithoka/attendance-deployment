@@ -10,19 +10,7 @@ const User = require('./models/User');
 const Class = require('./models/Class');
 const Student = require('./models/Student');
 
-app.get('/', (req, res) => {
-    // This is the success response, confirming the server is alive
-    res.json({ 
-        success: true, 
-        msg: 'Attendance Backend is Live! Socket.IO is attached.' 
-    });
-});
 
-// Optional: Handle favicon.ico requests (stops one of the 404 logs)
-app.get('/favicon.ico', (req, res) => res.status(204).end()); 
-
-// Mount Routers (These remain unchanged)
-app.use('/api/auth', require('./routes/auth'));
 
 
 // Load env vars
@@ -90,6 +78,20 @@ io.on('connection', (socket) => {
     console.log(`User disconnected: ${socket.id}`);
   });
 });
+
+app.get('/', (req, res) => {
+    // This is the success response, confirming the server is alive
+    res.json({ 
+        success: true, 
+        msg: 'Attendance Backend is Live! Socket.IO is attached.' 
+    });
+});
+
+// Optional: Handle favicon.ico requests (stops one of the 404 logs)
+app.get('/favicon.ico', (req, res) => res.status(204).end()); 
+
+// Mount Routers (These remain unchanged)
+app.use('/api/auth', require('./routes/auth'));
 
 // 4. Middleware to make the emitter function available in all routes
 // This MUST be placed BEFORE you mount your routers.
