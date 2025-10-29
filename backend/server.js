@@ -97,6 +97,24 @@ app.use((req, res, next) => {
     console.log(`404 Error: Unhandled Request: ${req.method} ${req.originalUrl}`);
     res.status(404).json({ success: false, msg: `The requested resource was not found on this server. Path: ${req.originalUrl}` });
 });
+
+// ... (existing router imports)
+
+// Liveness check for Render and to stop 404 errors on browser visit
+app.get('/', (req, res) => {
+    // This is the success response, confirming the server is alive
+    res.json({ 
+        success: true, 
+        msg: 'Attendance Backend is Live! Socket.IO is attached.' 
+    });
+});
+
+// Optional: Handle favicon.ico requests (stops one of the 404 logs)
+app.get('/favicon.ico', (req, res) => res.status(204).end()); 
+
+// Mount Routers (These remain unchanged)
+app.use('/api/auth', require('./routes/auth'));
+// ... (rest of your server.js file)
 const PORT = process.env.PORT || 5000;
 
 // 5. Start the server using the http instance, NOT app.listen()
