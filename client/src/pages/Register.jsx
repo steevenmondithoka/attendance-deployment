@@ -52,7 +52,7 @@ const Register = () => {
         setError('');
 
         try {
-            await api.post('/auth/register', formData);
+            await api.post('/api/auth/register', formData);
             // On success, navigate to the login page. A success message can be shown there.
             navigate('/login');
         } catch (err) {
