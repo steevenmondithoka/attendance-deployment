@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import api from '../utils/api'; // Make sure you have the configured Axios instance
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+
 const AddSingleStudent = ({ classId, onStudentAdded }) => {
     const [formData, setFormData] = useState({
         name: '',
