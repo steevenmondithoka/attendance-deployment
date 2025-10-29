@@ -8,12 +8,14 @@ import { SocketProvider } from './context/SocketContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+  <SocketProvider>
     <BrowserRouter>
-    <SocketProvider>
+    
      <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
       <App />
       </ThemeProvider>
-     </SocketProvider>
+    
     </BrowserRouter>
+    </SocketProvider>
   </React.StrictMode>
 );
