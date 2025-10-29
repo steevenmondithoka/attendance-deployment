@@ -23,7 +23,10 @@ const app = express();
 app.use(express.json());
 
 // Enable CORS for standard API requests
-app.use(cors());
+const VERCEL_FRONTEND_URL = 'https://attendance-deployment-eta.vercel.app';
+
+app.use(cors({ origin: VERCEL_FRONTEND_URL, credentials: true }));
+
 
 
 // --- 3. REAL-TIME SOCKET.IO SETUP ---
@@ -31,10 +34,7 @@ const server = http.createServer(app); // Create an HTTP server from your Expres
 
 // Attach Socket.IO to the server with CORS configuration
 const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:5173", // Your React client's URL
-    methods: ["GET", "POST"]
-  }
+    cors: { origin: VERCEL_FRONTEND_URL, methods: ["GET", "POST"] }
 });
 
 // This function fetches fresh data and broadcasts it to all connected clients.
