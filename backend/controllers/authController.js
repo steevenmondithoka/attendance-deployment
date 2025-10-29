@@ -54,11 +54,11 @@ exports.register = async (req, res) => {
         // --- REAL-TIME UPDATE TRIGGER ---
         // After any new user is saved, emit an update.
         // This makes the function robust for future roles.
-        await req.emitDashboardData();
-
-        const payload = { id: user.id, role: user.role, name: user.name };
-        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.status(201).json({ token });
+        try {
+    await req.emitDashboardData(); 
+} catch(dashboardErr) {
+    console.error("Non-fatal: Failed to emit dashboard data after registration:", dashboardErr);
+}
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
