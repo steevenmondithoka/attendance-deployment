@@ -1,0 +1,11 @@
+# Dependency directories
+node_modules
+
+# Environment variables (security risk if committed)
+.env
+.env.local
+
+# Logs and compiled files
+npm-debug.log
+dist
+build
