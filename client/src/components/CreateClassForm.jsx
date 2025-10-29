@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import api from '../utils/api';
+import api from 'https://attendance-deployment.onrender.com/api';
 
 // --- Shadcn UI & Icon Imports ---
 import { Button } from "@/components/ui/button";

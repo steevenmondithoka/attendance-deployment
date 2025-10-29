@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../utils/api';
+import api from 'https://attendance-deployment.onrender.com/api';
 
 const AddStudentForm = ({ classId, onStudentAdded }) => {
     const [formData, setFormData] = useState({ userId: '', rollNo: '' });

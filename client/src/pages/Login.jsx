@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../utils/api';
+import api from 'https://attendance-deployment.onrender.com/api';
 import  jwtDecode  from 'jwt-decode';
 import { useAuth } from '../hooks/useAuth'; // 1. Import the hook
 

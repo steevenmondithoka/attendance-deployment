@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import api from '../utils/api';
+import api from 'https://attendance-deployment.onrender.com/api';
 import BulkAddStudents from '../components/BulkAddStudents';
 import AddSingleStudent from '../components/AddSingleStudent';
 
