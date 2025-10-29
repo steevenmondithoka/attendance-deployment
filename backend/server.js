@@ -10,6 +10,20 @@ const User = require('./models/User');
 const Class = require('./models/Class');
 const Student = require('./models/Student');
 
+app.get('/', (req, res) => {
+    // This is the success response, confirming the server is alive
+    res.json({ 
+        success: true, 
+        msg: 'Attendance Backend is Live! Socket.IO is attached.' 
+    });
+});
+
+// Optional: Handle favicon.ico requests (stops one of the 404 logs)
+app.get('/favicon.ico', (req, res) => res.status(204).end()); 
+
+// Mount Routers (These remain unchanged)
+app.use('/api/auth', require('./routes/auth'));
+
 
 // Load env vars
 dotenv.config();
@@ -101,19 +115,7 @@ app.use((req, res, next) => {
 // ... (existing router imports)
 
 // Liveness check for Render and to stop 404 errors on browser visit
-app.get('/', (req, res) => {
-    // This is the success response, confirming the server is alive
-    res.json({ 
-        success: true, 
-        msg: 'Attendance Backend is Live! Socket.IO is attached.' 
-    });
-});
 
-// Optional: Handle favicon.ico requests (stops one of the 404 logs)
-app.get('/favicon.ico', (req, res) => res.status(204).end()); 
-
-// Mount Routers (These remain unchanged)
-app.use('/api/auth', require('./routes/auth'));
 // ... (rest of your server.js file)
 const PORT = process.env.PORT || 5000;
 
