@@ -9,7 +9,7 @@ export const useSocket = () => {
 
 export const SocketProvider = ({ children }) => {
   // 1. Get the URL from the environment
-  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+  const BACKEND_URL = process.env.VITE_BACKEND_URL;
   
   // 2. Safely initialize the socket instance using useMemo
   // This prevents re-creation and ensures it only runs once and safely.
