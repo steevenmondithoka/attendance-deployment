@@ -10,7 +10,7 @@ const { isTeacher } = require("../middleware/roleMiddleware");
 
 const router = express.Router();
 
-router.post("/api/class", protect, isTeacher, createClass);
+router.post("/", protect, isTeacher, createClass);
 router.get("/", protect, isTeacher, getTeacherClasses);
 
 router.route("/:id").get(protect, getClassDetails).delete(protect, deleteClass);
