@@ -32,13 +32,7 @@ app.use(cors({
 }));
 
 // --- ✅ Create HTTP server and attach Socket.IO ---
-const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: FRONTEND_URLS,
-    methods: ["GET", "POST"]
-  }
-});
+
 
 // --- ✅ Dashboard data emitter function ---
 const emitDashboardData = async () => {
@@ -69,13 +63,7 @@ const emitDashboardData = async () => {
 };
 
 // --- ✅ Socket.IO connection events ---
-io.on('connection', (socket) => {
-  console.log(`🟢 Socket connected: ${socket.id}`);
 
-  socket.on('disconnect', () => {
-    console.log(`🔴 Socket disconnected: ${socket.id}`);
-  });
-});
 
 // --- ✅ Root route for Render health check ---
 app.get('/', (req, res) => {
