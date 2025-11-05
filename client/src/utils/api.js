@@ -3,7 +3,7 @@ import axios from 'axios';
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://attendance-deployment.onrender.com';
 
 const api = axios.create({
-    baseURL: `${BACKEND_URL}/api`,
+    baseURL: BACKEND_URL,
 });
 
 api.interceptors.request.use(

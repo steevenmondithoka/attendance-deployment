@@ -47,7 +47,8 @@ const Login = () => {
         setError('');
 
         try {
-            const res = await api.post('/api/auth/login', formData);
+            const res = await api.post('/auth/login', formData);
+
 
             
             // Call the login function from your auth context to update the global state
