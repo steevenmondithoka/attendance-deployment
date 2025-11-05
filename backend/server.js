@@ -25,7 +25,7 @@ const app = express();
 app.use(express.json());
 
 // Enable CORS for standard API requests
-const VERCEL_FRONTEND_URL = 'https://attendance-deployment-eta.vercel.app'; 
+const VERCEL_FRONTEND_URL = 'https://attendance-deployment-three.vercel.app'; 
 
 app.use(cors({ origin: VERCEL_FRONTEND_URL, credentials: true }));
 
