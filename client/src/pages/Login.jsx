@@ -47,7 +47,7 @@ const Login = () => {
         setError('');
 
         try {
-           const res = await api.post('/login', formData);
+           const res = await api.post('/api/auth/login', formData);
 
 
 
