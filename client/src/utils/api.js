@@ -1,14 +1,9 @@
 import axios from 'axios';
 
-// The fallback URL is correct
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://attendance-deployment.onrender.com';
 
 const api = axios.create({
-    // ------------------------------------------------------------------
-    // ✅ FIX: Append /api to the base URL
-    // This will make the final request to: [Your Render URL]/api/class
-    baseURL: `${BACKEND_URL}/api`, 
-    // ------------------------------------------------------------------
+    baseURL: BACKEND_URL,
 });
 
 api.interceptors.request.use(
