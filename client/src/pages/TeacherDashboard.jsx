@@ -42,7 +42,7 @@ const TeacherDashboard = () => {
     // --- Delete Handler ---
     const handleDeleteClass = async (classId) => {
         try {
-            await api.delete(`/class/${classId}`);
+            await api.delete(`/api/class/${classId}`);
             // After successful deletion, refresh the class list to update the UI
             fetchClasses();
         } catch (err) {
@@ -114,7 +114,7 @@ const TeacherDashboard = () => {
                                                     <span>{classItem.students.length} Student{classItem.students.length !== 1 && 's'}</span>
                                                 </div>
                                                 <Button asChild variant="outline" size="sm">
-                                                    <Link to={`/class/${classItem._id}`}>
+                                                    <Link to={`/api/class/${classItem._id}`}>
                                                         Manage <ArrowRight className="ml-2 h-4 w-4" />
                                                     </Link>
                                                 </Button>
