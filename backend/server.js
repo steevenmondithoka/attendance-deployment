@@ -40,15 +40,19 @@ const io = new Server(server, {
 });
 
 // This function fetches fresh data and broadcasts it to all connected clients.
-const emitDashboardData = async () => {
+// File: server.js
+
+// This function fetches fresh data and broadcasts it to all connected clients,
+// or emits to a single provided socket.
+const emitDashboardData = async (targetSocket = io) => { // Default to 'io' (all)
     try {
+        // ... (data fetching remains the same)
         const totalUsers = await User.countDocuments();
-        const totalTeachers = await User.countDocuments({ role: 'teacher' });
-        const totalStudents = await Student.countDocuments(); // Use Student model for accurate count
+        // ... (fetch all other stats)
         const totalClasses = await Class.countDocuments();
 
-        // The event name 'dashboard_update' must match what the client is listening for
-        io.emit("dashboard_update", {
+        // Use the targetSocket (either 'io' for all, or 'socket' for one)
+        targetSocket.emit("dashboard_update", {
             stats: {
                 totalUsers,
                 totalTeachers,
@@ -61,12 +65,11 @@ const emitDashboardData = async () => {
                 time: new Date().toLocaleTimeString()
             }
         });
-        console.log('Dashboard data emitted successfully.');
+        console.log(`Dashboard data emitted successfully to ${targetSocket === io ? 'all' : 'single socket'}.`);
     } catch (error) {
         console.error("Error emitting dashboard data:", error);
     }
 };
-
 // Listen for new client connections
 io.on('connection', (socket) => {
   console.log(`User connected with socket ID: ${socket.id}`);
