@@ -32,7 +32,7 @@ const StudentDashboard = () => {
                 if (!token) { throw new Error("Authentication token not found."); }
                 const decoded = jwtDecode(token);
                 setUserDetails({ name: decoded.name, email: decoded.email });
-                const res = await api.get(`/attendance/student/${decoded.id}`);
+                const res = await api.get(`/api/attendance/student/${decoded.id}`);
                 setAllAttendance(res.data);
                 const uniqueSubjects = [...new Set(res.data.map(item => item.classId?.subject).filter(Boolean))];
                 setSubjects(uniqueSubjects);

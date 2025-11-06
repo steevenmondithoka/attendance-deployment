@@ -31,7 +31,7 @@ const BulkAddStudents = ({ classId, onUploadComplete }) => {
         try {
             // CORRECTED: The API endpoint is updated from `/student/` (singular) to `/students/` (plural)
             // to match the route definition in the Express controller.
-            const res = await api.post(`/students/bulk-register/${classId}`, formData, {
+            const res = await api.post(`/api/students/bulk-register/${classId}`, formData, {
                 headers: {
                     // This header is crucial for file uploads with FormData.
                     // Axios typically sets it automatically when you pass a FormData object.
