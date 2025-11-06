@@ -40,9 +40,9 @@ const ClassDetails = () => {
     const [date] = useState(todayForApi);
 
     // ... All fetch logic remains the same ...
-    const fetchClassDetails = useCallback(async () => { /* ... no changes ... */ setLoading(true); try { const res = await api.get(`/class/${id}`); setClassDetails(res.data); } catch (err) { console.error("Failed to fetch class details:", err); setClassDetails(null); } finally { setLoading(false); } }, [id]);
+    const fetchClassDetails = useCallback(async () => { /* ... no changes ... */ setLoading(true); try { const res = await api.get(`/api/class/${id}`); setClassDetails(res.data); } catch (err) { console.error("Failed to fetch class details:", err); setClassDetails(null); } finally { setLoading(false); } }, [id]);
     useEffect(() => { fetchClassDetails(); }, [id]);
-    const fetchAttendance = useCallback(async () => { if (!classDetails) return; try { const res = await api.get(`/attendance/class/${id}?date=${date}`); const attendanceWithAllStudents = classDetails.students.map(student => { const record = res.data?.records.find(r => r.studentId._id === student._id); return { studentId: student._id, name: student.user.name, rollNo: student.rollNo, status: record ? record.status : 'Absent', }; }); setAttendance(attendanceWithAllStudents); } catch (err) { setAttendance(classDetails.students.map(student => ({ studentId: student._id, name: student.user.name, rollNo: student.rollNo, status: 'Absent', }))); } }, [id, classDetails, date]);
+    const fetchAttendance = useCallback(async () => { if (!classDetails) return; try { const res = await api.get(`/api/attendance/class/${id}?date=${date}`); const attendanceWithAllStudents = classDetails.students.map(student => { const record = res.data?.records.find(r => r.studentId._id === student._id); return { studentId: student._id, name: student.user.name, rollNo: student.rollNo, status: record ? record.status : 'Absent', }; }); setAttendance(attendanceWithAllStudents); } catch (err) { setAttendance(classDetails.students.map(student => ({ studentId: student._id, name: student.user.name, rollNo: student.rollNo, status: 'Absent', }))); } }, [id, classDetails, date]);
     useEffect(() => { if (classDetails) { fetchAttendance(); } }, [classDetails, fetchAttendance]);
     const handleStatusChange = (studentIdToUpdate, newStatus) => { const updatedAttendance = attendance.map(studentAttendance => { if (studentAttendance.studentId === studentIdToUpdate) { return { ...studentAttendance, status: newStatus }; } return studentAttendance; }); setAttendance(updatedAttendance); };
 
@@ -53,7 +53,7 @@ const ClassDetails = () => {
         
         try {
             const records = attendance.map(({ studentId, status }) => ({ studentId, status }));
-            await api.post('/attendance/mark', { classId: id, date, records });
+            await api.post('/api/attendance/mark', { classId: id, date, records });
             
             setResultContent({ type: 'success', title: 'Success!', message: 'Attendance has been saved successfully.' });
             fetchAttendance();
