@@ -81,7 +81,7 @@ const Login = () => {
         setSuccess('');
 
         try {
-            const res = await api.post('/auth/login', formData);
+            const res = await api.post('/api/auth/login', formData);
             
             if (res.data?.token) {
                 auth.login(res.data.token);
@@ -222,7 +222,7 @@ const Login = () => {
                     <p>
                         Don't have an account?{' '}
                         <span className="text-foreground font-medium">
-                            Please contact your administrator(steeve).
+                            Please contact your administrator(Steeve).
                         </span>
                     </p>
                 </CardFooter>
