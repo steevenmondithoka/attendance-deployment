@@ -29,7 +29,7 @@ const ChangePasswordForm = () => {
         }
 
         try {
-            const res = await api.put('/auth/update-password', { currentPassword, newPassword });
+            const res = await api.put('/api/auth/update-password', { currentPassword, newPassword });
             setMessage(res.data.msg);
             // Clear form on success
             setFormData({ currentPassword: '', newPassword: '', confirmPassword: '' });
