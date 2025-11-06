@@ -10,6 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import './index.css'
 import { AuthProvider } from './hooks/useAuth'; // The import path should have no extension
 import AdminDashboard from './components/AdminDashboard';
+import Home from './pages/Home';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
 
                     
                     <Routes>
+                     <Route path="/" element={<Home />} /> 
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
 
