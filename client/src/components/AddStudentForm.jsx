@@ -18,7 +18,7 @@ const AddStudentForm = ({ classId, onStudentAdded }) => {
             return;
         }
         try {
-            await api.post('/student', { ...formData, classId });
+            await api.post('/api/student', { ...formData, classId });
             alert('Student added successfully!');
             setFormData({ userId: '', rollNo: '' }); // Reset form
             onStudentAdded(); // Callback to refresh the parent component's data

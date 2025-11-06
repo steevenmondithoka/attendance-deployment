@@ -26,7 +26,7 @@ const CreateTeacherForm = () => {
         setSuccess('');
 
         try {
-            await api.post('/auth/create-teacher', formData);
+            await api.post('/api/auth/create-teacher', formData);
             setSuccess(`Teacher account for ${formData.name} created successfully!`);
             setFormData({ name: '', email: '', password: '' }); // Clear the form
             setTimeout(() => setSuccess(''), 5000);
