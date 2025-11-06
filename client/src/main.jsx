@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   
     <BrowserRouter>
     <SocketProvider>
-     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <App />
       </ThemeProvider>
     </SocketProvider>
