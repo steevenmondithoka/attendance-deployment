@@ -4,19 +4,18 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import { ThemeProvider } from './components/ThemeProvider';
-import { SocketProvider } from './context/SocketContext';
-
+import { SocketProvider } from './context/SocketContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-  
     <BrowserRouter>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
     <SocketProvider>
-     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+     
       <App />
+     
+     </SocketProvider>
       </ThemeProvider>
-    </SocketProvider>
     </BrowserRouter>
-   
   </React.StrictMode>
 );
