@@ -114,7 +114,7 @@ const TeacherDashboard = () => {
                                                     <span>{classItem.students.length} Student{classItem.students.length !== 1 && 's'}</span>
                                                 </div>
                                                 <Button asChild variant="outline" size="sm">
-                                                    <Link to={`/api/class/${classItem._id}`}>
+                                                    <Link to={`/class/${classItem._id}`}>
                                                         Manage <ArrowRight className="ml-2 h-4 w-4" />
                                                     </Link>
                                                 </Button>
