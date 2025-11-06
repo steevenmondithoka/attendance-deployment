@@ -38,7 +38,7 @@ const handleSubmit = async (e) => {
     try {
         // --- THE FINAL FIX ---
         // This URL now perfectly matches the new backend route structure
-        const response = await api.post(`/students/add/${classId}`, { name, email, rollNo });
+        const response = await api.post(`/api/students/add/${classId}`, { name, email, rollNo });
 
         setSuccess(`Student "${response.data.student.name}" was added successfully!`);
         setFormData({ name: '', email: '', rollNo: '' });
