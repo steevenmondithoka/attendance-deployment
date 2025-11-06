@@ -5,7 +5,7 @@ import { FaUsers, FaChalkboardTeacher, FaUserGraduate, FaSchool } from 'react-ic
 import CreateTeacherForm from './CreateTeacherForm';
 
 // Establish a connection to the Socket.IO server
-const BACKEND_URL = process.env.VITE_BACKEND_URL || 'TEMP_BACKEND_URL_PLACEHOLDER'; 
+const BACKEND_URL = process.env.VITE_BACKEND_URL || 'https://attendance-deployment.onrender.com'; 
 const socket = io(BACKEND_URL);
 
 // --- Reusable Stat Card Component (No change) ---
