@@ -222,7 +222,7 @@ const Login = () => {
                     <p>
                         Don't have an account?{' '}
                         <span className="text-foreground font-medium">
-                            Please contact your administrator.
+                            Please contact your administrator(steeve).
                         </span>
                     </p>
                 </CardFooter>
