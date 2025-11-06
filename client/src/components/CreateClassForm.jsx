@@ -27,7 +27,8 @@ const CreateClassForm = ({ onClassCreated }) => {
         setSuccess('');
 
         try {
-            await api.post('/class', formData);
+            await api.post('/api/class', formData);
+            
             
             // --- Set success message and reset the form ---
             setSuccess('Class created successfully!');
