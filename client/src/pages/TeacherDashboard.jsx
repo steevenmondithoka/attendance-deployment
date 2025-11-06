@@ -25,7 +25,7 @@ const TeacherDashboard = () => {
         setLoading(true);
         setError(null);
         try {
-            const res = await api.get('/class');
+             const res = await api.get('/api/class'); 
             setClasses(res.data);
         } catch (err) {
             console.error("Failed to fetch classes:", err);
@@ -42,7 +42,7 @@ const TeacherDashboard = () => {
     // --- Delete Handler ---
     const handleDeleteClass = async (classId) => {
         try {
-            await api.delete(`/class/${classId}`);
+              await api.delete(`/api/class/${classId}`);
             // After successful deletion, refresh the class list to update the UI
             fetchClasses();
         } catch (err) {
